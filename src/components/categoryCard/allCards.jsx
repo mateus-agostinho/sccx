@@ -1,6 +1,8 @@
 import CategoryCard from "./categoryCard";
 import NoCard from "./noCard";
 import styles from "./allCards.module.scss";
+import Modal from "../Ui/Modal";
+import AddAmount from "./modais/AddAmount";
 
 const DUMMY_DATA = [
   { id: 1, title: "essencial", amount: 1800, percentage: 10 },
@@ -14,10 +16,13 @@ const allCards = () => {
   ));
 
   return (
+    <>
+    <AddAmount/> 
     <section className={styles.section}>
         {cards}
       <NoCard />
     </section>
+    </>
   );
 };
 
