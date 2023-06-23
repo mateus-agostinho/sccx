@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../Ui/Modal";
 import styles from "../../Ui/Modal.module.scss";
-import { toogleAddAmount } from "@/src/store/ui-slice";
+import { toogleAddCategory } from "@/src/store/ui-slice";
 
-const AddAmount = () => {
-  const { isVisible, category } = useSelector((state) => state.ui.addAmount);
+const AddCategory = () => {
+  const { isVisible, category } = useSelector((state) => state.ui.addCategory);
   const dispatch = useDispatch();
-
 
   return (
     <Modal
       isOpen={isVisible}
-      onClose={() => dispatch(toogleAddAmount(null))}
-      title="Adicionar"
+      onClose={() => dispatch(toogleAddCategory(null))}
+      title="Nova Categoria"
     >
       <div>
         <form>
@@ -24,24 +23,24 @@ const AddAmount = () => {
               type="text"
               id="title"
               name="title"
-              placeholder="Ex: Venda de um objeto"
+              placeholder="Essencial"
             />
           </div>
           <div className={styles["label-input"]}>
-            <label htmlFor="amount" className="p">
-              Valor
+            <label htmlFor="porcentagem" className="p">
+              Porcentagem Alocada
             </label>
             <input
               type="text"
-              id="amount"
-              name="amount"
-              placeholder="R$"
+              id="porcentagem"
+              name="porcentagem"
+              placeholder="%"
               className="max-width"
             />
           </div>
           <div className={styles.buttons}>
             <button type="submit" className="btn btn-primary">
-              Adicionar
+              Salvar
             </button>
           </div>
         </form>
@@ -50,4 +49,4 @@ const AddAmount = () => {
   );
 };
 
-export default AddAmount;
+export default AddCategory;

@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../Ui/Modal";
 import styles from "../../Ui/Modal.module.scss";
-import { toogleAddAmount } from "@/src/store/ui-slice";
+import { toogleSubtractAmount } from "@/src/store/ui-slice";
 
-const AddAmount = () => {
-  const { isVisible, category } = useSelector((state) => state.ui.addAmount);
+const SubtractAmount = () => {
+  const { isVisible, category } = useSelector((state) => state.ui.subtractAmount);
   const dispatch = useDispatch();
 
 
   return (
     <Modal
       isOpen={isVisible}
-      onClose={() => dispatch(toogleAddAmount(null))}
-      title="Adicionar"
+      onClose={() => dispatch(toogleSubtractAmount(null))}
+      title="Descontar"
     >
       <div>
         <form>
@@ -24,7 +24,7 @@ const AddAmount = () => {
               type="text"
               id="title"
               name="title"
-              placeholder="Ex: Venda de um objeto"
+              placeholder="Ex: Pagar Energia"
             />
           </div>
           <div className={styles["label-input"]}>
@@ -41,7 +41,7 @@ const AddAmount = () => {
           </div>
           <div className={styles.buttons}>
             <button type="submit" className="btn btn-primary">
-              Adicionar
+              Descontar
             </button>
           </div>
         </form>
@@ -50,4 +50,4 @@ const AddAmount = () => {
   );
 };
 
-export default AddAmount;
+export default SubtractAmount;

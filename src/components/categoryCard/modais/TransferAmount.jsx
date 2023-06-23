@@ -1,31 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../Ui/Modal";
 import styles from "../../Ui/Modal.module.scss";
-import { toogleAddAmount } from "@/src/store/ui-slice";
+import { toogleTransferAmount } from "@/src/store/ui-slice";
 
-const AddAmount = () => {
-  const { isVisible, category } = useSelector((state) => state.ui.addAmount);
+const TransferAmount = () => {
+  const { isVisible, category } = useSelector((state) => state.ui.transferAmount);
   const dispatch = useDispatch();
 
 
   return (
     <Modal
       isOpen={isVisible}
-      onClose={() => dispatch(toogleAddAmount(null))}
-      title="Adicionar"
+      onClose={() => dispatch(toogleTransferAmount(null))}
+      title="Transferir"
     >
       <div>
         <form>
           <div className={styles["label-input"]}>
-            <label htmlFor="title" className="p">
-              Título
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder="Ex: Venda de um objeto"
-            />
+            <p>De</p>
+            <p className="caption">Pessoal</p>
+          </div>
+          <div className={styles["label-input"]}>
+            <label htmlFor="destination">Para</label>
+            <select name="destination" id="destination" className="max-width">
+              <option value="essencial">Essencial</option>
+              <option value="pessoal">Viagens</option>
+              <option value="investimentos">Investimentos</option>
+            </select>
           </div>
           <div className={styles["label-input"]}>
             <label htmlFor="amount" className="p">
@@ -41,7 +42,7 @@ const AddAmount = () => {
           </div>
           <div className={styles.buttons}>
             <button type="submit" className="btn btn-primary">
-              Adicionar
+              Transferir
             </button>
           </div>
         </form>
@@ -50,4 +51,4 @@ const AddAmount = () => {
   );
 };
 
-export default AddAmount;
+export default TransferAmount;

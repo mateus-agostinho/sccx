@@ -32,6 +32,12 @@
   font-weight: 400;
   color: $text;
  }
+.caption{
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: $text;
+}
+
  .btn {
   border: none;
   padding: 1rem 4rem;
@@ -45,13 +51,23 @@
     background-color: $income;
     color: $white;
 
-    &:houver{
+    &:hover{
       background-color: lighten($income, 3);
+    }
+  }
+  &.btn-secondary {
+    border: 1px solid $income;
+    background-color: transparent;
+    color: $income;
+
+    &:hover {
+      border: 1px solid lighten($income, 3);
+      color: lighten($income, 3);
     }
   }
  }
 
- input[type='text']{
+ input[type='text'], select{
   border: 1px solid $text;
   border-radius: 0.5rem;
   padding: 0.8rem 1rem;
