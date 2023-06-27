@@ -2,11 +2,32 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../Ui/Modal";
 import styles from "../../Ui/Modal.module.scss";
 import { toogleSubtractAmount } from "@/src/store/ui-slice";
+import { useState } from "react";
+import useUpdateDoc from "@/src/hooks/useUpdatedoc";
 
 const SubtractAmount = () => {
-  const { isVisible, category } = useSelector((state) => state.ui.subtractAmount);
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState(0);
+
+  const { isVisible, category } = useSelector(
+    (state) => state.ui.subtractAmount
+  );
   const dispatch = useDispatch();
 
+  const subTtactAmountHadler = useUpdateDoc();
+
+  const subTractAmount = (e) => {
+    e.preventDefault();
+
+    if (!title || !amount) return;
+
+    subTtactAmountHadler("categoria", category.id, {
+      amount: category.amount - Number(amount),
+    });
+    dispatch(toogleSubtractAmount(null));
+    setTitle("");
+    setAmount(0);
+  };
 
   return (
     <Modal
@@ -15,7 +36,7 @@ const SubtractAmount = () => {
       title="Descontar"
     >
       <div>
-        <form>
+        <form onSubmit={subTractAmount}>
           <div className={styles["label-input"]}>
             <label htmlFor="title" className="p">
               Título
@@ -25,6 +46,7 @@ const SubtractAmount = () => {
               id="title"
               name="title"
               placeholder="Ex: Pagar Energia"
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className={styles["label-input"]}>
@@ -37,6 +59,7 @@ const SubtractAmount = () => {
               name="amount"
               placeholder="R$"
               className="max-width"
+              onChange={(e) => setAmount(e.target.value)}
             />
           </div>
           <div className={styles.buttons}>

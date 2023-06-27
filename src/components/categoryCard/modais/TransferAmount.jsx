@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../Ui/Modal";
 import styles from "../../Ui/Modal.module.scss";
-import { toogleTransferAmount } from "@/src/store/ui-slice";
+import { toogleTransferAmount } from "../../../store/ui-slice";
+import { useEffect, useState } from "react";
 
 const TransferAmount = () => {
-  const { isVisible, category } = useSelector((state) => state.ui.transferAmount);
+  const { isVisible, category } = useSelector(
+    (state) => state.ui.transferAmount
+  );
   const dispatch = useDispatch();
-
 
   return (
     <Modal
@@ -23,9 +25,10 @@ const TransferAmount = () => {
           <div className={styles["label-input"]}>
             <label htmlFor="destination">Para</label>
             <select name="destination" id="destination" className="max-width">
-              <option value="essencial">Essencial</option>
-              <option value="pessoal">Viagens</option>
-              <option value="investimentos">Investimentos</option>
+                <option value="essencial">Essencial</option>
+                <option value="investimenoto">Investimento</option>
+                <option value="pessoal">Pessoal</option>
+              
             </select>
           </div>
           <div className={styles["label-input"]}>
